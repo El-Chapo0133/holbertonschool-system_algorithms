@@ -1,4 +1,4 @@
-#ifndef RED_BLAC_TREE
+#ifndef RED_BLACK_TREE
 #define RED_BLACK_TREE
 
 #include <stdio.h>
@@ -7,10 +7,6 @@
 
 #define true 1
 #define false 0
-
-
-rb_tree_t *rb_tree_node(rb_tree_t *parent, int value, rb_color_t color);
-
 
 
 /**
@@ -44,6 +40,7 @@ typedef struct rb_tree_s
 	struct rb_tree_s *right;
 } rb_tree_t;
 
+rb_tree_t *rb_tree_node(rb_tree_t *parent, int value, rb_color_t color);
 
 
 #endif
