@@ -41,7 +41,7 @@ int check_bst(const rb_tree_t *tree)
 int recursive_bst_check(const rb_tree_t *tree, int min, int max)
 {
 	if (!tree) /* NULL check */
-		return (false);
+		return (true);
 	if (tree->n < min || tree->n > max)
 		return (false);
 	
