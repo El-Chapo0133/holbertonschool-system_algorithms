@@ -2,6 +2,12 @@
 #include "1-rb_tree_is_valid.h"
 
 
+/**
+ * rb_tree_is_valid - check if a rb_tree is valid
+ * @tree: parent node
+ *
+ * Return: bool
+ */
 int rb_tree_is_valid(const rb_tree_t *tree)
 {
 	if (!tree)
@@ -11,23 +17,29 @@ int rb_tree_is_valid(const rb_tree_t *tree)
 
 	if (!check_bst(tree))
 		return (false);
-	if (check_height(tree) > 1)
+	if (check_height(tree) != 0)
 		return (false);
 
 	return (true);
 }
 
+/**
+ * check_height - recursivly check the height of the tree
+ * the tree should be balanced and so not have an unbalanced side
+ * @tree: parent node
+ *
+ * Return: value of the unbalancing
+ */
 int check_height(const rb_tree_t *tree)
 {
+	/* balancing value */
 	int difference = 0;
 
 	if (!tree) /* NULL check */
 		return (false);
 
 	difference = check_height(tree->left) - check_height(tree->right);
-	if (difference >= 0)
-		return (difference + 1);
-	return (-difference + 1);
+	return (difference + 1);
 }
 
 int check_bst(const rb_tree_t *tree)
