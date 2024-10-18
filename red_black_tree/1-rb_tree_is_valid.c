@@ -39,7 +39,7 @@ int check_height(const rb_tree_t *tree)
 		return (false);
 
 	difference = check_height(tree->left) - check_height(tree->right);
-	return (difference + 1);
+	return (-difference + 1);
 }
 
 int check_bst(const rb_tree_t *tree)
