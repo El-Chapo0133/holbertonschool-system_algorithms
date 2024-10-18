@@ -5,6 +5,8 @@
 #include <stdlib.h>
 
 
+#define INT_MIN -2147483647
+#define INT_MAX 2147483647
 #define true 1
 #define false 0
 
@@ -42,6 +44,7 @@ typedef struct rb_tree_s
 } rb_tree_t;
 
 rb_tree_t *rb_tree_node(rb_tree_t *parent, int value, rb_color_t color);
+int rb_tree_is_valid(const rb_tree_t *tree);
 
 
 #endif
