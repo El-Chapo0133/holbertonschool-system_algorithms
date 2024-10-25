@@ -3,7 +3,6 @@
 
 #include <stdio.h>
 #include <stdlib.h>
-#include "tree_utils.h"
 
 #define INT_MIN -2147483647
 #define INT_MAX 2147483647
@@ -47,5 +46,6 @@ rb_tree_t *rb_tree_node(rb_tree_t *parent, int value, rb_color_t color);
 int rb_tree_is_valid(const rb_tree_t *tree);
 rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value);
 
+#include "tree_utils.h"
 
 #endif
