@@ -10,6 +10,7 @@
 rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value)
 {
 	rb_tree_t *new_node;
+	printf("Foo");
 
 	if (!tree) /* NULL check */
 	{
@@ -37,7 +38,6 @@ rb_tree_t *insert_at_right_place(rb_tree_t **tree, int value)
 {
 	rb_tree_t *discover, *parent;
 
-	printf("Foo");
 	/* start looking where to put new node */
 	discover = *tree;
 	while (discover)
