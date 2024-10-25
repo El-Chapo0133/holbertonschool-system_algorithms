@@ -1,7 +1,6 @@
 #include <stdlib.h>
 #include "rb_trees.h"
 
-void rb_tree_print(const rb_tree_t *tree);
 
 /**
  * main - Entry point
@@ -22,6 +21,6 @@ int main(void)
     root->right->left = rb_tree_node(root->right, 256, BLACK);
     root->right->right = rb_tree_node(root->right, 512, BLACK);
 
-    rb_tree_print(root);
+    /*rb_tree_print(root);*/
     return (EXIT_SUCCESS);
 }
