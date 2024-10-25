@@ -33,10 +33,11 @@ rb_tree_t *get_uncle(const rb_tree_t *tree)
  * @node2: second node
  *
  * Return: void
- */
+ *
 void swap_colors(rb_tree_t *node1, rb_tree_t *node2)
 {
 	rb_color_t node1_color = node1->color;
 	node1->color = node2->color;
 	node2->color = node1_color;
 }
+*/

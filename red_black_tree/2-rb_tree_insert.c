@@ -10,9 +10,8 @@
 rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value)
 {
 	rb_tree_t *new_node;
-	printf("Foo");
 
-	if (!tree) /* NULL check */
+	if (!*tree) /* NULL check */
 	{
 		(*tree) = rb_tree_node(NULL, value, BLACK);
 		return (*tree);

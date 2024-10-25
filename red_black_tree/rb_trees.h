@@ -42,7 +42,8 @@ typedef struct rb_tree_s
 	struct rb_tree_s *right;
 } rb_tree_t;
 
-#include "tree_utils.h"
+/* holberthon checker dislikes this */
+/* #include "tree_utils.h" */
 
 
 rb_tree_t *rb_tree_node(rb_tree_t *parent, int value, rb_color_t color);
