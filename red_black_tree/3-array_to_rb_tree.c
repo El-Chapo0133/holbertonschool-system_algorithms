@@ -4,7 +4,7 @@
 /**
  * array_to_rb_tree - create a rb tree from an array
  * @array: array to create the tree with
- * #size: size of the array
+ * @size: size of the array
  *
  * Return: root of the newly rb tree
  */
@@ -35,7 +35,7 @@ rb_tree_t *array_to_rb_tree(int *array, size_t size)
 int is_duplicate(int *array, size_t size, int value)
 {
 	size_t index;
-	
+
 	for (index = 0; index < size; index++)
 		if (array[index] == value)
 			return (true);
