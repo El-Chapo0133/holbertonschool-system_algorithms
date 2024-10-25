@@ -1,168 +1,237 @@
-#include "2-rb_tree_insert.h"
+#include "rb_trees.h"
+
 
 /**
- * rb_tree_insert - insert new node in red black tree
- * @tree: parent node
- * @value: value to insert
+ * rb_tree_get_uncle - retrieves sibling
+ * @n: starting node
+ * Return: pointer
+ */
+rb_tree_t *rb_tree_get_uncle(rb_tree_t *n)
+{
+	rb_tree_t *p = n ? n->parent : NULL;
+
+	if (!p || !p->parent)
+		return (NULL);
+
+	if (p == p->parent->left)
+		return (p->parent->right);
+
+	return (p->parent->left);
+}
+
+/**
+ * rb_tree_rotate_left - left child of root becomes new root, tree rotated
+ * @tree: pointer
+ * Return: new root node
+ */
+rb_tree_t *rb_tree_rotate_left(rb_tree_t *tree)
+{
+	rb_tree_t *pivot = NULL;
+
+	if (!tree)
+		return (NULL);
+
+	pivot = tree->right;
+
+	tree->right = pivot->left;
+	if (pivot->left)
+		pivot->left->parent = tree;
+
+	pivot->parent = tree->parent;
+	if (tree->parent)
+	{
+		if (tree == tree->parent->left)
+			tree->parent->left = pivot;
+		else
+			tree->parent->right = pivot;
+	}
+
+	pivot->left = tree;
+	tree->parent = pivot;
+
+	return (pivot);
+}
+
+
+/**
+ * rb_tree_rotate_right - tree rotated
+ * @tree: pointer
+ * Return: new root node
+ */
+rb_tree_t *rb_tree_rotate_right(rb_tree_t *tree)
+{
+	rb_tree_t *pivot = NULL;
+
+	if (!tree)
+		return (NULL);
+
+	pivot = tree->left;
+
+	tree->left = pivot->right;
+	if (pivot->right)
+		pivot->right->parent = tree;
+
+	pivot->parent = tree->parent;
+	if (tree->parent)
+	{
+		if (tree == tree->parent->right)
+			tree->parent->right = pivot;
+		else
+			tree->parent->left = pivot;
+	}
+
+	pivot->right = tree;
+	tree->parent = pivot;
+
+	return (pivot);
+}
+
+
+/**
+ * rb_tree_insert_case4 - case 4
+ * @node: pointer
+ * Return: new root node
+ */
+rb_tree_t *rb_tree_insert_case4(rb_tree_t *node)
+{
+	rb_tree_t *p = node ? node->parent : NULL;
+	rb_tree_t *g = p ? p->parent : NULL;
+	rb_tree_t *new_root = NULL;
+
+	if (!p || !g)
+		return (NULL);
+
+	if (node == p->right && p == g->left)
+	{
+		new_root = rb_tree_rotate_left(p);
+		node = node->left;
+	}
+
+	else if (node == p->left && p == g->right)
+	{
+		new_root = rb_tree_rotate_right(p);
+		node = node->right;
+	}
+
+	p = node ? node->parent : NULL;
+	g = p ? p->parent : NULL;
+
+	if (node == p->left)
+		new_root = rb_tree_rotate_right(g);
+	else
+		new_root = rb_tree_rotate_left(g);
+
+	while (new_root && new_root->parent)
+		new_root = new_root->parent;
+
+	p->color = BLACK;
+	g->color = RED;
+
+	return (new_root);
+}
+
+
+/**
+ * rb_tree_insert_repair - color repair
+ * @root: pointer
+ * @node: pointer
+ * Return: new root node
+ */
+rb_tree_t *rb_tree_insert_repair(rb_tree_t *root, rb_tree_t *node)
+{
+	if (!node)
+		return (root);
+
+	if (node->parent == NULL)
+	{
+		node->color = BLACK;
+		return (node);
+	}
+	else if (node->parent->color == BLACK)
+	{
+		return (root);
+	}
+	else if (rb_tree_get_uncle(node) != NULL &&
+		 rb_tree_get_uncle(node)->color == RED)
+	{
+		node->parent->color = BLACK;
+		rb_tree_get_uncle(node)->color = BLACK;
+		node->parent->parent->color = RED;
+		return (rb_tree_insert_repair(root, node->parent->parent));
+	}
+
+	return (rb_tree_insert_case4(node));
+
+}
+
+
+/**
+ * rb_tree_insert_recurse - insert node
+ * @tree: pointer
+ * @value: int
+ * Return: new node
+ */
+rb_tree_t *rb_tree_insert_recurse(rb_tree_t *tree, int value)
+{
+	rb_tree_t *new = NULL;
+
+	if (tree)
+	{
+		if (tree->n > value)
+		{
+			if (tree->left == NULL)
+			{
+				new = rb_tree_node(tree, value, RED);
+				tree->left = new;
+				return (new);
+			}
+
+			return (rb_tree_insert_recurse(tree->left, value));
+		}
+
+		if (tree->n < value)
+		{
+			if (tree->right == NULL)
+			{
+				new = rb_tree_node(tree, value, RED);
+				tree->right = new;
+				return (new);
+			}
+
+			return (rb_tree_insert_recurse(tree->right, value));
+		}
+
+		return (NULL);
+	}
+
+	return (rb_tree_node(NULL, value, RED));
+}
+
+
+/**
+ * rb_tree_insert - insert
  *
- * Return: newly created node
+ * @tree: pointer
+ * @value: int
+ * Return: new node
  */
 rb_tree_t *rb_tree_insert(rb_tree_t **tree, int value)
 {
-	rb_tree_t *new_node;
+	rb_tree_t *new = NULL, *new_root = NULL;
 
-	if (!*tree) /* NULL check */
-	{
-		(*tree) = rb_tree_node(NULL, value, BLACK);
-		return (*tree);
-	}
+	if (!tree)
+		new = rb_tree_insert_recurse(NULL, value);
+	else
+		new = rb_tree_insert_recurse(*tree, value);
 
-	new_node = insert_at_right_place(tree, value);
-	if (!new_node) /* Memory error :( */
+	if (!new)
 		return (NULL);
-	
-	repear_rb_tree(tree, new_node);
-	return (new_node);
-}
 
-/**
- * insert_at_right_place - insert new node at the right place
- * of the current tree
- * @tree: non-NULL parent node
- * @value: value of the new node
- *
- * Return: new created node
- */
-rb_tree_t *insert_at_right_place(rb_tree_t **tree, int value)
-{
-	rb_tree_t *discover, *parent;
-
-	/* start looking where to put new node */
-	discover = *tree;
-	while (discover)
-	{
-		parent = discover;
-		if (discover->n < value)
-			discover = discover->left;
-		else
-			discover = discover->right;
-	}
-	discover = rb_tree_node(parent, value, RED);
-	if (!discover) /* NULL check */
+	new_root = rb_tree_insert_repair(*tree, new);
+	if (!new_root)
 		return (NULL);
-	
-	/* update parent links */
-	if (value < parent->n) /* place smaller value on the left */
-		parent->left = discover;
-	else
-		parent->right = discover;
-	return (discover);
-}
 
-void repear_rb_tree(rb_tree_t **tree, rb_tree_t *new_node)
-{
-	rb_tree_t *parent = NULL;
-	rb_tree_t *grand_parent = NULL;
+	*tree = new_root;
 
-	while (new_node != *tree &&
-		new_node->color == RED &&
-		new_node->parent->color == RED)
-	{
-		parent = new_node->parent;
-		grand_parent = parent->parent;
-		rotate_cases(tree, &new_node, parent, grand_parent,
-				!(parent == grand_parent->left));
-	}
-
-	(*tree)->color = BLACK;
-}
-
-
-void rotate_cases(rb_tree_t **tree, rb_tree_t **new_node, rb_tree_t *parent,
-		rb_tree_t *grand_parent, int is_right)
-{
-	rb_tree_t *uncle = is_right ? grand_parent->left : grand_parent->right;
-
-	if (uncle && uncle->color == RED)
-	{
-		grand_parent->color = RED;
-		parent->color = BLACK;
-		uncle->color = BLACK;
-		*new_node = grand_parent;
-	}
-	else
-	{
-		/* left case */
-		if (!is_right && (*new_node == parent->right))
-		{
-			rotate_left(tree, parent);
-			*new_node = parent;
-			parent = (*new_node)->parent;
-		}
-		/* right case */
-		else if (is_right && (*new_node == parent->left))
-		{
-			rotate_right(tree, parent);
-			*new_node = parent;
-			parent = (*new_node)->parent;
-		}
-		/* Uncle is BLACK and new_node is the left child */
-		is_right ? rotate_left(tree, grand_parent) : rotate_right(tree, grand_parent);
-		swap_colors(parent, grand_parent);
-		*new_node = parent;
-	}
-}
-
-void rotate_right(rb_tree_t **tree, rb_tree_t *grand_parent)
-{
-	rb_tree_t *parent = grand_parent->left;
-	
-	grand_parent->left = parent->right;
-
-	if (parent->right)
-		parent->right->parent = grand_parent;
-	parent->parent = grand_parent->parent;
-
-	if (!grand_parent->parent)
-		*tree = parent;
-	else if (grand_parent == grand_parent->parent->left)
-		grand_parent->parent->left = parent;
-	else
-		grand_parent->parent->right = parent;
-
-	parent->right = grand_parent;
-	grand_parent->parent = parent;
-}
-void rotate_left(rb_tree_t **tree, rb_tree_t *parent)
-{
-	rb_tree_t *right_child = parent->right;
-
-	parent->right = right_child->left;
-	if (parent->right)
-		parent->right->parent = parent;
-
-	right_child->parent = parent->parent;
-	if (!parent->parent)
-		*tree = right_child;
-	else if (parent == parent->parent->left)
-		parent->parent->left = right_child;
-	else
-		parent->parent->right = right_child;
-
-	right_child->left = parent;
-	parent->parent = right_child;
-}
-
-/**
- * swap_colors - swap the colors of two given nodes
- * @node1: first node
- * @node2: second node
- *
- * Return: void
- */
-void swap_colors(rb_tree_t *node1, rb_tree_t *node2)
-{
-	rb_color_t node1_color = node1->color;
-	node1->color = node2->color;
-	node2->color = node1_color;
+	return (new);
 }
