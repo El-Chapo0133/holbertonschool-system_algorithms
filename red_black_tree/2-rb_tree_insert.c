@@ -48,6 +48,9 @@ rb_tree_t *insert_at_right_place(rb_tree_t **tree, int value)
 			discover = discover->right;
 	}
 	discover = rb_tree_node(parent, value, RED);
+	if (!discover) /* NULL check */
+		return (NULL);
+	
 	/* update parent links */
 	if (value < parent->n) /* place smaller value on the left */
 		parent->left = discover;
@@ -97,7 +100,7 @@ void rotate_cases(rb_tree_t **tree, rb_tree_t **new_node, rb_tree_t *parent,
 			parent = (*new_node)->parent;
 		}
 		/* right case */
-		if (is_right && (*new_node == parent->left))
+		else if (is_right && (*new_node == parent->left))
 		{
 			rotate_right(tree, parent);
 			*new_node = parent;
@@ -113,6 +116,7 @@ void rotate_cases(rb_tree_t **tree, rb_tree_t **new_node, rb_tree_t *parent,
 void rotate_right(rb_tree_t **tree, rb_tree_t *grand_parent)
 {
 	rb_tree_t *parent = grand_parent->left;
+	
 	grand_parent->left = parent->right;
 
 	if (parent->right)
@@ -145,7 +149,7 @@ void rotate_left(rb_tree_t **tree, rb_tree_t *parent)
 	else
 		parent->parent->right = right_child;
 
-	right_child = parent;
+	right_child->left = parent;
 	parent->parent = right_child;
 }
 
