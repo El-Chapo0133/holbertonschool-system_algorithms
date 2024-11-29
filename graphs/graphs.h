@@ -5,8 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define VISITED 0
-#define UNVISITED 1
+#define VISITED 1
+#define UNVISITED 0
 
 /**
  * enum edge_type_e - Enumerates the different types of
