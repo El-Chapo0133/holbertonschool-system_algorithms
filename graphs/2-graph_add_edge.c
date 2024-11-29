@@ -35,6 +35,7 @@ vertex_t *find_vertex(graph_t *graph, const char *str)
 int edge_exists(vertex_t *v_src, vertex_t *v_dest)
 {
 	edge_t *edge = v_src->edges;
+
 	while (edge)
 	{
 		if (edge->dest == v_dest)
@@ -57,7 +58,7 @@ int create_and_place_edge(vertex_t *v_src, vertex_t *v_dest)
 
 	while (temp && temp->next)
 		temp = temp->next;
-	
+
 	new = malloc(sizeof(edge_t));
 	if (!new) /* uh oh */
 		return (0);
@@ -80,9 +81,10 @@ int create_and_place_edge(vertex_t *v_src, vertex_t *v_dest)
  *
  * Return: 1 on success, 0 on failure
  */
-int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type)
+int graph_add_edge(graph_t *graph, const char *src,
+		const char *dest, edge_type_t type)
 {
-	int return_code = 1;
+	int code = 1;
 	vertex_t *v_src, *v_dest;
 
 	if (!graph)
@@ -97,19 +99,19 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
 	if (!edge_exists(v_src, v_dest))
 	{
 		if (!create_and_place_edge(v_src, v_dest))
-			return_code = 0;
+			code = 0;
 		else
 			v_src->nb_edges++;
 	}
 	/* if it's a BIDIRECTIONAL type, create the 'second' edge */
 	/* same logic as the 'main', but reverse src and dest */
 	if (type == BIDIRECTIONAL && !edge_exists(v_dest, v_src))
-	{	
+	{
 		if (!create_and_place_edge(v_dest, v_src))
-			return_code = 0;
+			code = 0;
 		else
 			v_dest->nb_edges++;
 	}
 
-	return (return_code);
+	return (code);
 }
