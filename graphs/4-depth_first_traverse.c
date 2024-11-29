@@ -3,11 +3,10 @@
 
 vertex_t *get_vertex_by_index(const graph_t *graph, size_t index)
 {
-	vertex_t *temp;
+	vertex_t *temp = graph->vertices;
 
 	if (index > graph->nb_vertices)
 		return (NULL);
-	temp = graph->vertices;
 	while (temp)
 	{
 		if (temp->index == index)
@@ -57,11 +56,17 @@ size_t depth_first_traverse(const graph_t *graph,
 	/* allocate full array set at 0 */
 	stack = calloc(sizeof(size_t), graph->nb_vertices);
 	if (!stack) /* uh oh */
+	{
+		free(stack);
 		return (0);
+	}
 	
 	temp = graph->vertices;
 	if (!temp) /* uh oh */
+	{
+		free(stack);
 		return (0);
+	}
 
 	dfs(temp->index, stack, 0, &depth, graph, action);
 
