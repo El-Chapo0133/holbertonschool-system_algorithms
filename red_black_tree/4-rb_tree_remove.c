@@ -22,17 +22,17 @@ rb_tree_t *rb_tree_remove(rb_tree_t *root, int n)
 		transplant(&root, temp_node, NULL);
 		transplant(&root, node_to_remove, temp_node);
 		temp_node->left = node_to_remove->left;
-
+		repear_deletion();
 	}
 	else if (node_to_remove->left == NULL)
 	{
 		transplant(&root, node_to_remove, node_to_remove->right);
-		repear_deletion();
+		repear_deletion(&root, node_to_remove->right);
 	}
 	else if (node_to_remove->right == NULL)
 	{
 		transplant(&root, node_to_remove, node_to_remove->left);
-		repear_deletion();
+		repear_deletion(&root, node_to_remove->left);
 	}
 
 	free(node_to_remove);
@@ -95,11 +95,20 @@ void repear_deletion(rb_tree_t **root, rb_tree_t *to_fix)
 			{
 				if (brother->left->color == BLACK)
 				{
-					
+					brother->right->color = BLACK;
+					brother->color = RED;
+					rotate_left(brother);
+					brother = to_fix->parent->left;	
 				}
+				brother->color = to_fix->parent->color;
+				to_fix->parent->color = BLACK;
+				borther->left->color = BLACK;
+				rotate_right(to_fix->parent);
+				to_fix = *root;
 			}
 		}
 	}
+	to_fix->color = BLACK;
 }
 
 
