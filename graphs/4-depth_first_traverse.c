@@ -59,15 +59,12 @@ size_t depth_first_traverse(const graph_t *graph,
 		return (0);
 	
 	temp = graph->vertices;
-	if (!temp)
+	if (!temp) /* uh oh */
 		return (0);
 
-	if (temp)
-	{
-		if (stack[temp->index] == UNVISITED)
-			dfs(temp->index, stack, 0, &depth, graph, action);
-		temp = temp->next;
-	}
+	/* if (stack[temp->index] == UNVISITED) */
+		dfs(temp->index, stack, 0, &depth, graph, action);
+	/* temp = temp->next; */
 
 	free(stack);
 	return (depth);
