@@ -10,7 +10,7 @@ void graph_delete(graph_t *graph)
 
 	while (graph->vertices)
 	{
-		vertex = graph_vertices
+		vertex = graph->vertices
 		while (vertex->edges)
 		{
 			edge = vertex->edges;
