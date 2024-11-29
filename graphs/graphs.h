@@ -74,7 +74,7 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str);
 int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type);
 
 /* side functions */
-int create_and_place_edge(vertex *v_src, vertex *v_dest);
+int create_and_place_edge(vertex_t *v_src, vertex_t *v_dest);
 int edge_exists(vertex_t *v_src, vertex_t *v_dest);
 
 
