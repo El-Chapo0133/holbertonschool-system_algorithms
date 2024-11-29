@@ -68,6 +68,6 @@ size_t depth_first_traverse(const graph_t *graph,
 		temp = temp->next;
 	}
 
-	free(visited);
+	free(stack);
 	return (depth);
 }
