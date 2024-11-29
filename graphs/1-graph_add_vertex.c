@@ -18,7 +18,7 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 	temp = graph->vertices;
 	while (temp)
 	{
-		if (strcmp(temp->content, str))
+		if (!strcmp(temp->content, str))
 			return (NULL);
 		if (!temp->next)
 			break;
