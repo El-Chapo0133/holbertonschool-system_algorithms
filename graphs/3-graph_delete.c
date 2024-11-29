@@ -1,5 +1,13 @@
 #include "graphs.h"
 
+
+/**
+ * graph_delete - delete the graph, all it's vertices
+ * and all it's edges
+ * @graph: graph
+ *
+ * Return: void
+ */
 void graph_delete(graph_t *graph)
 {
 	vertex_t *vertex;
