@@ -62,7 +62,7 @@ size_t depth_first_traverse(const graph_t *graph,
 	if (!temp)
 		return (0);
 
-	while (temp)
+	if (temp)
 	{
 		if (stack[temp->index] == UNVISITED)
 			dfs(temp->index, stack, 0, &depth, graph, action);
