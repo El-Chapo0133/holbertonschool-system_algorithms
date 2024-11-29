@@ -45,12 +45,14 @@ void dfs(int index, size_t *stack, size_t current_depth,
 	if (!v_temp || stack[index] == VISITED)
 		return;
 
+	/* trigger the action for this vertice */
 	action(v_temp, current_depth);
 	if (current_depth > *depth)
 		*depth = current_depth;
-	stack[index] = VISITED;
+	stack[index] = VISITED; /* mark it as VISITED */
+	
 	edge = v_temp->edges;
-
+	/* recursivly call all the edges if they're unvisited */
 	while (edge)
 	{
 		v_dest = edge->dest;
@@ -77,22 +79,14 @@ size_t depth_first_traverse(const graph_t *graph,
 	if (!graph)
 		return (0);
 
-	/* allocate full array set at 0 */
+	/* allocate full array set at 0, 0 is UNVISITED */
 	stack = calloc(sizeof(size_t), graph->nb_vertices);
 	if (!stack) /* uh oh */
-	{
-		free(stack);
 		return (0);
-	}
-
+	
 	temp = graph->vertices;
-	if (!temp) /* uh oh */
-	{
-		free(stack);
-		return (0);
-	}
-
-	dfs(temp->index, stack, 0, &depth, graph, action);
+	if (temp)
+		dfs(temp->index, stack, 0, &depth, graph, action);
 
 	free(stack);
 	return (depth);
