@@ -1,5 +1,5 @@
 #ifndef GRAPHS
-#define
+#define GRAPHS
 
 /**
  * enum edge_type_e - Enumerates the different types of
