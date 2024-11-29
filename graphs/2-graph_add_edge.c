@@ -55,7 +55,7 @@ int create_and_place_edge(vertex_t *v_src, vertex_t *v_dest)
 {
 	edge_t *temp = v_src->edges, *new = NULL;
 
-	while (temp && !temp->next)
+	while (temp && temp->next)
 		temp = temp->next;
 	
 	new = malloc(sizeof(edge_t));
@@ -82,7 +82,7 @@ int create_and_place_edge(vertex_t *v_src, vertex_t *v_dest)
  */
 int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type)
 {
-	int code = 1;
+	int return_code = 1;
 	vertex_t *v_src, *v_dest;
 
 	if (!graph)
@@ -97,7 +97,7 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
 	if (!edge_exists(v_src, v_dest))
 	{
 		if (!create_and_place_edge(v_src, v_dest))
-			code = 0;
+			return_code = 0;
 		else
 			v_src->nb_edges++;
 	}
@@ -106,10 +106,10 @@ int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_
 	if (type == BIDIRECTIONAL && !edge_exists(v_dest, v_src))
 	{	
 		if (!create_and_place_edge(v_dest, v_src))
-			code = 0;
+			return_code = 0;
 		else
 			v_dest->nb_edges++;
 	}
 
-	return (code);
+	return (return_code);
 }
