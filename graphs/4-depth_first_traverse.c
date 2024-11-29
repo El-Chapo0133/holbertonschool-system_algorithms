@@ -3,10 +3,11 @@
 
 vertex_t *get_vertex_by_index(const graph_t *graph, size_t index)
 {
-	vertex_t *temp = graph->vertices;
+	vertex_t *temp;
 
 	if (index > graph->nb_vertices)
 		return (NULL);
+	temp = graph->vertices;
 	while (temp)
 	{
 		if (temp->index == index)
