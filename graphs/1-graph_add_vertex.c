@@ -16,12 +16,10 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 	if (!str || !graph)
 		return (NULL);
 	temp = graph->vertices;
-	while (temp)
+	while (temp && temp->next)
 	{
 		if (!strcmp(temp->content, str))
 			return (NULL);
-		if (!temp->next)
-			break;
 		temp = temp->next;
 	}
 

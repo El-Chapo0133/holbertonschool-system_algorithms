@@ -68,7 +68,20 @@ typedef struct graph_s
 	vertex_t    *vertices;
 } graph_t;
 
+/* exos functions */
 graph_t *graph_create(void);
 vertex_t *graph_add_vertex(graph_t *graph, const char *str);
+int graph_add_edge(graph_t *graph, const char *src, const char *dest, edge_type_t type);
+
+/* side functions */
+int create_and_place_edge(vertex *v_src, vertex *v_dest);
+int edge_exists(vertex_t *v_src, vertex_t *v_dest);
+
+
+/* utils */
+vertex_t *find_vertex(graph_t *graph, const char *str);
+
+/* display */
+void graph_display(const graph_t *graph);
 
 #endif
