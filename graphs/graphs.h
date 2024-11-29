@@ -5,6 +5,9 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define VISITED 0
+#define UNVISITED 1
+
 /**
  * enum edge_type_e - Enumerates the different types of
  * connection between two vertices
