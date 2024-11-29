@@ -24,7 +24,7 @@ void dfs(int index, size_t *stack, size_t current_depth,
 	edge_t *edge;
 
 	v_temp = get_vertex_by_index(graph, index);
-	if (!v_temp || stack[index] == VISITED)
+	if (!v_temp && stack[index] == VISITED)
 		return;
 	
 	action(v_temp, current_depth);
