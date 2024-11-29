@@ -31,13 +31,13 @@ void dfs(int index, size_t *stack, size_t current_depth,
 	if (current_depth > *depth)
 		*depth = current_depth;
 	stack[index] = VISITED;
-	edge = v_temp->edge;
+	edge = v_temp->edges;
 	
 	while (edge)
 	{
 		v_dest = edge->dest;
 		if (stack[v_dest->index] == UNVISITED)
-			dfs(dest->index, stack, current_depth, depth, graph, action);
+			dfs(v_dest->index, stack, current_depth, depth, graph, action);
 		edge = edge->next;
 	}
 }
@@ -46,14 +46,14 @@ size_t depth_first_traverse(const graph_t *graph,
 		void (*action)(const vertex_t *v,
 		size_t depth))
 {
-	size_t result = 0;
+	size_t depth = 0;
 	size_t *stack;
 	vertex_t *temp;
 
 	if (!graph)
 		return (0);
 
-	visited = malloc(sizeof(size_t) * graph->nb_vertices);
+	stack = malloc(sizeof(size_t) * graph->nb_vertices);
 	if (!visited) /* uh oh */
 		return (0);
 	
