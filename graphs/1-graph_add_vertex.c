@@ -31,7 +31,7 @@ vertex_t *graph_add_vertex(graph_t *graph, const char *str)
 	vertex->index = 0;
 	vertex->edges = NULL;
 	vertex->nb_edges = 0;
-	vertex->exit = NULL;
+	vertex->next = NULL;
 
 	if (!temp)
 		graph->vertices = vertex;
