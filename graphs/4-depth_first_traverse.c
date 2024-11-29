@@ -1,6 +1,13 @@
 #include "graphs.h"
 
 
+/**
+ * get_vertex_by_index - get the vertex by the given index
+ * @graph: graph
+ * @index: index to get
+ *
+ * Return: correct vertex otherwise NULL
+ */
 vertex_t *get_vertex_by_index(const graph_t *graph, size_t index)
 {
 	vertex_t *temp = graph->vertices;
@@ -16,6 +23,17 @@ vertex_t *get_vertex_by_index(const graph_t *graph, size_t index)
 	return (NULL);
 }
 
+/**
+ * dfs - dfs algorithm, recursivly fill the stack and explore the graph
+ * @index: current index to look for
+ * @stack: stack of visited/unvisited indexes
+ * @current_depth: current depth of the recursive function
+ * @depth: final depth
+ * @graph: graph
+ * @action: action to trigger on every visited vertice
+ *
+ * Return: void
+ */
 void dfs(int index, size_t *stack, size_t current_depth,
 		size_t *depth, const graph_t *graph,
 		void (*action)(const vertex_t *v, size_t depth))
@@ -26,13 +44,13 @@ void dfs(int index, size_t *stack, size_t current_depth,
 	v_temp = get_vertex_by_index(graph, index);
 	if (!v_temp || stack[index] == VISITED)
 		return;
-	
+
 	action(v_temp, current_depth);
 	if (current_depth > *depth)
 		*depth = current_depth;
 	stack[index] = VISITED;
 	edge = v_temp->edges;
-	
+
 	while (edge)
 	{
 		v_dest = edge->dest;
@@ -42,9 +60,15 @@ void dfs(int index, size_t *stack, size_t current_depth,
 	}
 }
 
+/**
+ * depth_first_traverse - a function that goes throught the graph using dfs
+ * @graph: graph
+ * @action: action to be trigger on every visited vertice
+ *
+ * Return: the max depth or 0 on failure
+ */
 size_t depth_first_traverse(const graph_t *graph,
-		void (*action)(const vertex_t *v,
-		size_t depth))
+		void (*action)(const vertex_t *v, size_t depth))
 {
 	size_t depth = 0;
 	size_t *stack;
@@ -60,7 +84,7 @@ size_t depth_first_traverse(const graph_t *graph,
 		free(stack);
 		return (0);
 	}
-	
+
 	temp = graph->vertices;
 	if (!temp) /* uh oh */
 	{
