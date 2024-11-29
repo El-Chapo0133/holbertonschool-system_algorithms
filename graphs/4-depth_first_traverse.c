@@ -54,7 +54,7 @@ size_t depth_first_traverse(const graph_t *graph,
 		return (0);
 
 	stack = malloc(sizeof(size_t) * graph->nb_vertices);
-	if (!visited) /* uh oh */
+	if (!stack) /* uh oh */
 		return (0);
 	
 	temp = graph->vertices;
