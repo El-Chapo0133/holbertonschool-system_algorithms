@@ -37,7 +37,7 @@ void dfs(int index, size_t *stack, size_t current_depth,
 	{
 		v_dest = edge->dest;
 		if (stack[v_dest->index] == UNVISITED)
-			dfs(v_dest->index, stack, current_depth, depth, graph, action);
+			dfs(v_dest->index, stack, current_depth + 1, depth, graph, action);
 		edge = edge->next;
 	}
 }
