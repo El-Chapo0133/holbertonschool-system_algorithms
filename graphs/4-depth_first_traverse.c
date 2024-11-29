@@ -24,7 +24,7 @@ void dfs(int index, size_t *stack, size_t current_depth,
 	edge_t *edge;
 
 	v_temp = get_vertex_by_index(graph, index);
-	if (!v_temp && stack[index] == VISITED)
+	if (!v_temp || stack[index] == VISITED)
 		return;
 	
 	action(v_temp, current_depth);
@@ -62,9 +62,7 @@ size_t depth_first_traverse(const graph_t *graph,
 	if (!temp) /* uh oh */
 		return (0);
 
-	/* if (stack[temp->index] == UNVISITED) */
-		dfs(temp->index, stack, 0, &depth, graph, action);
-	/* temp = temp->next; */
+	dfs(temp->index, stack, 0, &depth, graph, action);
 
 	free(stack);
 	return (depth);
