@@ -63,7 +63,7 @@ int create_and_place_edge(vertex_t *v_src, vertex_t *v_dest)
 		return (0);
 	new->dest = v_dest;
 	new->next = NULL;
-	if (!temp || v_src->nb_edges == 0)
+	if (!temp)
 		v_src->edges = new;
 	else
 		temp->next = new;
