@@ -27,7 +27,7 @@ int edge_exists(vertex_t *v_src, vertex_t *v_dest)
  *
  * Return: 1 on success, 0 on failure
  */
-int create_and_place_edge(vertex *v_src, vertex *v_dest)
+int create_and_place_edge(vertex_t *v_src, vertex_t *v_dest)
 {
 	edge_t *temp = v_src->edges, *new = NULL;
 
