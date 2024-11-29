@@ -1,0 +1,7 @@
+*.o
+/out
+/test.c
+/test
+/graph_display.c
+/graph_display
+
