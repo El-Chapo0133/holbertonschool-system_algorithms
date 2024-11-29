@@ -52,7 +52,7 @@ void dfs(int index, size_t *stack, size_t current_depth,
 	stack[index] = VISITED; /* mark it as VISITED */
 	
 	edge = v_temp->edges;
-	/* recursivly call all the edges if they're unvisited */
+	/* recursivly call all the vertices if they're unvisited */
 	while (edge)
 	{
 		v_dest = edge->dest;
