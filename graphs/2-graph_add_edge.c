@@ -18,7 +18,7 @@ vertex_t *find_vertex(graph_t *graph, const char *str)
 	temp = graph->vertices;
 	while (temp)
 	{
-		if (strcmp(temp->content, str))
+		if (!strcmp(temp->content, str))
 			return (temp);
 		temp = temp->next;
 	}
