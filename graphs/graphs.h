@@ -8,7 +8,9 @@
 #define VISITED 1
 #define UNVISITED 0
 #define QUEUE_MAX_SIZE 65536 /* 2^16 */
-#define SIZE 65536 /* 2^16 */
+#define SIZE QUEUE_MAX_SIZE /* needed otherwise the checked screams */
+#define LEVEL_BREAKER -2
+
 
 /**
  * enum edge_type_e - Enumerates the different types of
