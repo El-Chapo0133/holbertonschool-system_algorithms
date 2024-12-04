@@ -8,6 +8,7 @@
 queue_t *create_queue()
 {
 	queue_t *queue = malloc(sizeof(queue_t));
+
 	if (!queue) /* uh oh */
 		return (NULL);
 
@@ -40,7 +41,7 @@ void enqueue(queue_t *queue, int value)
 
 /**
  * dequeue - dequeue an item from the given queue
- * @queue: queue to dequeue from 
+ * @queue: queue to dequeue from
  * @peek: if peek is true, only peek the item
  *
  * Return: the dequeued item
@@ -87,7 +88,15 @@ vertex_t *get_vertex_by_index(const graph_t *graph, size_t index)
 }
 
 
-size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_t *v, size_t depth))
+/**
+ * breadth_first_traverse - BFS algorithm throught graph
+ * @graph: graph
+ * @action: action to do for each unvisited vertice
+ *
+ * Return: result depth
+ */
+size_t breadth_first_traverse(const graph_t *graph,
+		void (*action)(const vertex_t *v, size_t depth))
 {
 	size_t depth = 0;
 	size_t *visited;
@@ -98,22 +107,20 @@ size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_
 
 	if (!graph || graph->nb_vertices == 0 || graph->vertices == NULL)
 		return (0);
-
 	visited = calloc(sizeof(size_t), graph->nb_vertices);
 	queue = create_queue();
 	if (!visited || !queue) /* uh oh */
 		return (0);
-
-	current = graph->vertices;
-	enqueue(queue, current->index);
+	current = graph->vertices, enqueue(queue, current->index);
 	enqueue(queue, LEVEL_BREAKER);
-
-	while (queue->rear != -1)
+	while (queue->rear != -1) /* loop until queue is empty */
 	{
 		index = dequeue(queue, 0);
-		if (index == LEVEL_BREAKER)
+		if (index == LEVEL_BREAKER) /* check if it's a LEVEL_BREAKER item */
 		{
+			/* enqueue next level_breaker */
 			enqueue(queue, LEVEL_BREAKER);
+			/* if no items between LEVEL_BREAKER break the loop */
 			if (dequeue(queue, 1) == LEVEL_BREAKER)
 				break;
 			depth++;
@@ -121,11 +128,13 @@ size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_
 		}
 
 		current = get_vertex_by_index(graph, index);
+		/* do this only for UNVISITED vertices */
 		if (visited[current->index] == UNVISITED)
 		{
 			visited[current->index] = VISITED;
 			action(current, depth);
 			edge = current->edges;
+			/* enqueue all edge dests if they're UNVISITED */
 			while (edge)
 			{
 				dest = edge->dest;
@@ -135,11 +144,7 @@ size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_
 			}
 		}
 	}
-
 	free(queue);
 	free(visited);
-	
-	if (depth == 0)
-		return (0);
-	return (depth - 1);
+	return (depth == 0 ? 0 : depth - 1);
 }
