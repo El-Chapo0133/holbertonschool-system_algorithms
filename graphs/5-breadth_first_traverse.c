@@ -116,6 +116,8 @@ size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_
 		{
 			depth++;
 			enqueue(queue, LEVEL_BREAKER);
+			if (dequeue(queue, 1) == LEVEL_BREAKER)
+				break;
 			continue;
 		}
 
