@@ -89,7 +89,7 @@ vertex_t *get_vertex_by_index(const graph_t *graph, size_t index)
 
 size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_t *v, size_t depth))
 {
-	size_t deapth = 0;
+	size_t depth = 0;
 	size_t *visited;
 	int index = 0;
 	vertex_t *current, *dest;
@@ -106,7 +106,6 @@ size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_
 
 	current = graph->vertices;
 	enqueue(queue, current->index);
-	enqueue(queue, LEVELBREAK);
 
 	while (queue->rear != -1)
 	{
