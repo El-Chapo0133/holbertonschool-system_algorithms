@@ -105,12 +105,13 @@ size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_
 		return (0);
 
 	current = graph->vertices;
-	enqueue(queue, LEVEL_BREAKER);
 	enqueue(queue, current->index);
+	enqueue(queue, LEVEL_BREAKER);
 
 	while (queue->rear != -1)
 	{
 		index = dequeue(queue, 0);
+		printf("%d\n", index);
 		if (index == LEVEL_BREAKER)
 		{
 			depth++;
@@ -121,7 +122,6 @@ size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_
 		current = get_vertex_by_index(graph, index);
 		if (visited[current->index] == UNVISITED)
 		{
-			depth++;
 			visited[current->index] = VISITED;
 			action(current, depth);
 			edge = current->edges;
