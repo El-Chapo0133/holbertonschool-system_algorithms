@@ -111,7 +111,6 @@ size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_
 	while (queue->rear != -1)
 	{
 		index = dequeue(queue, 0);
-		printf("%d\n", index);
 		if (index == LEVEL_BREAKER)
 		{
 			depth++;
