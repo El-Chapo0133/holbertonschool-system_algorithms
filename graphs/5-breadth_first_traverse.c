@@ -108,19 +108,14 @@ size_t breadth_first_traverse(const graph_t *graph,
 	if (!graph || graph->nb_vertices == 0 || graph->vertices == NULL)
 		return (0);
 	visited = calloc(sizeof(size_t), graph->nb_vertices);
-	queue = create_queue();
-	if (!visited || !queue) /* uh oh */
-		return (0);
-	current = graph->vertices, enqueue(queue, current->index);
-	enqueue(queue, LEVEL_BREAKER);
+	queue = create_queue(), current = graph->vertices;
+	enqueue(queue, current->index), enqueue(queue, LEVEL_BREAKER);
 	while (queue->rear != -1) /* loop until queue is empty */
 	{
 		index = dequeue(queue, 0);
 		if (index == LEVEL_BREAKER) /* check if it's a LEVEL_BREAKER item */
 		{
-			/* enqueue next level_breaker */
 			enqueue(queue, LEVEL_BREAKER);
-			/* if no items between LEVEL_BREAKER break the loop */
 			if (dequeue(queue, 1) == LEVEL_BREAKER)
 				break;
 			depth++;
@@ -128,13 +123,10 @@ size_t breadth_first_traverse(const graph_t *graph,
 		}
 
 		current = get_vertex_by_index(graph, index);
-		/* do this only for UNVISITED vertices */
 		if (visited[current->index] == UNVISITED)
 		{
 			visited[current->index] = VISITED;
-			action(current, depth);
-			edge = current->edges;
-			/* enqueue all edge dests if they're UNVISITED */
+			action(current, depth), edge = current->edges;
 			while (edge)
 			{
 				dest = edge->dest;
@@ -144,7 +136,6 @@ size_t breadth_first_traverse(const graph_t *graph,
 			}
 		}
 	}
-	free(queue);
-	free(visited);
+	free(queue), free(visited);
 	return (depth == 0 ? 0 : depth - 1);
 }
