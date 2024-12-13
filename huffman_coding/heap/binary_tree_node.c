@@ -3,7 +3,7 @@
  *
  *       Filename:  cinary_tree_node.c
  *
- *    Description: Write a function that creates a generic Binary Tree node 
+ *    Description: Write a function that creates a generic Binary Tree node
  *
  *        Version:  1.0
  *        Created:  13.12.2024 10:26:34
