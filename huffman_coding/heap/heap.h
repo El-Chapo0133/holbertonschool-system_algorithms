@@ -41,4 +41,8 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data);
 void *heap_extract(heap_t *heap);
 void heap_delete(heap_t *heap, void (*free_data)(void *));
 
+/* utils */
+int try_to_insert(heap_t heap, binary_tree_node_t *node);
+
+
 #endif
