@@ -63,7 +63,7 @@ void heapify(heap_t *heap, binary_tree_node_t *node)
  * get_binary_depth - get the depth of the given binary heap
  * @size: number of nodes in the tree
  *
- * Return : depth of the tree
+ * Return: depth of the tree
  */
 int get_binary_depth(long size)
 {
@@ -77,8 +77,10 @@ int get_binary_depth(long size)
 
 /**
  * try_to_insert - try to insert the new node in the binary heap
- * @heap: heap
+ * @root: root node
  * @node: node to insert
+ * @deep: current depth
+ * @target_depth: target depth
  *
  * Return: 1 if inserted, 0 otherwise
  */
