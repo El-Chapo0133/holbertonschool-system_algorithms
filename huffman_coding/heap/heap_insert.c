@@ -47,10 +47,14 @@ void heapify(heap_t *heap, binary_tree_node_t *node)
 
 	if (!heap || !node)
 		return;
-	while (temp->parent != NULL)
+	/* swap the values until tree is min-heap or root is reached */
+	while (temp->parent)
 	{
+		/* if this node has a smaller value than his parent */
 		if (heap->data_cmp(temp->data, temp->parent->data) < 0)
 			swap(temp, temp->parent);
+		else /* if no swap is needed it means the tree is min-heap */
+			break;
 		temp = temp->parent;
 	}
 }
@@ -65,6 +69,7 @@ int get_binary_depth(long size)
 {
 	long num_nodes = 1, depth = 0;
 
+	/* magical code i found on stackoverflow */
 	while (size >= num_nodes)
 		num_nodes += (1 << (depth++ + 1));
 	return (depth);
@@ -82,6 +87,8 @@ int try_to_insert(binary_tree_node_t *root, binary_tree_node_t *node,
 {
 	int left = 0, right = 0;
 
+	/* if target depth is reached, try to insert it */
+	/* if both branch are used, return 0 */
 	if (deep == depth_target)
 	{
 		if (!root->left)
@@ -122,6 +129,7 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 	if (!node)
 		return (NULL);
 
+	/* when the root is unset */
 	if (!heap->root)
 	{
 		heap->size++;
@@ -137,7 +145,7 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 		free(node);
 		return (NULL);
 	}
-
+	/* min-heap-ify the tree */
 	heapify(heap, node);
 
 	heap->size++;
