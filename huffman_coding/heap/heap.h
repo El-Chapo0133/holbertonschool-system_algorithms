@@ -1,3 +1,6 @@
+#ifndef HEAP_H
+#define HEAP_H
+
 /*
  * ===========================================================================
  *
@@ -10,14 +13,12 @@
  *       Revision:  none
  *       Compiler:  gcc
  *
- *         Author:  Loris Lévêque (loris@leveque.website), 9601@holbertonstudents.com
+ *         Author:  Loris Lévêque, 9601@holbertonstudents.com
  *   Organization:  
  *
  * ===========================================================================
  */
 
-#ifndef HEAP_H
-#define HEAP_H
 
 #include <stdio.h>
 #include <stdlib.h>

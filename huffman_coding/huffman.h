@@ -1,3 +1,5 @@
+#ifndef HUFFMAN_H
+#define HUFFMAN_H
 /*
  * ===========================================================================
  *
@@ -16,8 +18,6 @@
  * ===========================================================================
  */
 
-#ifndef HUFFMAN_H
-#define HUFFMAN_H
 
 /**
  * struct symbol_s - Stores a char and its associated frequency
