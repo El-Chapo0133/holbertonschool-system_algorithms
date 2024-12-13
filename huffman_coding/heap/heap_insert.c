@@ -80,7 +80,7 @@ int get_binary_depth(long size)
  * @root: root node
  * @node: node to insert
  * @deep: current depth
- * @target_depth: target depth
+ * @depth_target: target depth
  *
  * Return: 1 if inserted, 0 otherwise
  */
