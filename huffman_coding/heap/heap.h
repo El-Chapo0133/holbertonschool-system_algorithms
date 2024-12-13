@@ -20,6 +20,7 @@
 #define HEAP_H
 
 #include <stdio.h>
+#include <stdlib.h>
 
 /**
  * struct binary_tree_node_s - Binary tree node data structure
@@ -50,5 +51,12 @@ typedef struct heap_s
     int (*data_cmp)(void *, void *);
     binary_tree_node_t *root;
 } heap_t;
+
+/* functions */
+heap_t *heap_create(int (*data_cmp)(void *, void *));
+binary_tree_node_t *binary_tree_node(binary_tree_node_t *parent, void *data);
+binary_tree_node_t *heap_insert(heap_t *heap, void *data);
+void *heap_extract(heap_t *heap);
+void heap_delete(heap_t *heap, void (*free_data)(void *));
 
 #endif
