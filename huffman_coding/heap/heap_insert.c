@@ -30,6 +30,8 @@ int try_to_insert(heap_t *heap, binary_tree_node_t *node)
 	int cmp;
 	binary_tree_node_t *temp = heap->root;
 
+	if (temp == NULL)
+		return (1);
 	while (temp)
 	{
 		cmp = heap->data_cmp(node->data, temp->data);
