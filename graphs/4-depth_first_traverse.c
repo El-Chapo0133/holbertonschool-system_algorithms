@@ -1,6 +1,5 @@
 #include "graphs.h"
 
-
 /**
  * get_vertex_by_index - get the vertex by the given index
  * @graph: graph
@@ -40,7 +39,7 @@ void dfs(int index, size_t *stack, size_t current_depth,
 {
 	vertex_t *v_temp, *v_dest;
 	edge_t *edge;
-
+	
 	v_temp = get_vertex_by_index(graph, index);
 	if (!v_temp || stack[index] == VISITED)
 		return;
