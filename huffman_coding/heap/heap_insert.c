@@ -29,6 +29,7 @@
 void swap(binary_tree_node_t *a, binary_tree_node_t *b)
 {
 	void *temp = a->data;
+	
 	a->data = b->data;
 	b->data = temp;
 }
