@@ -47,6 +47,7 @@ int try_to_insert(heap_t *heap, binary_tree_node_t *node)
 		temp->right = node;
 	else
 		temp->left = node;
+	node->parent = temp;
 	return (1);
 }
 
