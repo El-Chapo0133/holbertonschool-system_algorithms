@@ -7,6 +7,10 @@
 
 #define VISITED 1
 #define UNVISITED 0
+#define QUEUE_MAX_SIZE 65536 /* 2^16 */
+#define SIZE QUEUE_MAX_SIZE /* needed otherwise the checked screams */
+#define LEVEL_BREAKER -2
+
 
 /**
  * enum edge_type_e - Enumerates the different types of
@@ -71,6 +75,23 @@ typedef struct graph_s
 	vertex_t    *vertices;
 } graph_t;
 
+
+/* queue struct */
+/**
+ * struct queue_s - Representation of a queue
+ *
+ * @items: items to be queued
+ * @front: Pointer to the first item in queue
+ * @rear: Pointer to the last item in queue
+ */
+typedef struct queue_s
+{
+	int items[SIZE];
+	int front;
+	int rear;
+} queue_t;
+
+
 /* exos functions */
 graph_t *graph_create(void);
 vertex_t *graph_add_vertex(graph_t *graph, const char *str);
@@ -82,6 +103,7 @@ size_t breadth_first_traverse(const graph_t *graph, void (*action)(const vertex_
 /* side functions */
 int create_and_place_edge(vertex_t *v_src, vertex_t *v_dest);
 int edge_exists(vertex_t *v_src, vertex_t *v_dest);
+vertex_t *get_vertex_by_index(const graph_t *graph, size_t index);
 
 
 /* utils */
