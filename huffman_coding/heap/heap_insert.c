@@ -25,7 +25,7 @@
  *
  * Return: 1 if well inserted, 0 otherwise
  */
-int try_to_insert(heap_t heap, binary_tree_node_t *node)
+int try_to_insert(heap_t *heap, binary_tree_node_t *node)
 {
 	int cmp;
 	binary_tree_node_t *temp = heap->root;
