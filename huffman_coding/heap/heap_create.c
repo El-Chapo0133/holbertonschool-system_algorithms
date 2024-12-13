@@ -3,7 +3,7 @@
 
 /**
  * heap_create - create a heap_t
- * @data_cmd: ptr to cmp function
+ * @data_cmp: ptr to cmp function
  *
  * Return: newly created heap_t
  */
