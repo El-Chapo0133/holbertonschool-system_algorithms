@@ -18,39 +18,88 @@
 
 #include "heap.h"
 
+
 /**
- * try_to_insert - try to insert the new node in the BST
+ * swap - swap the data of two given nodes
+ * @a: first node
+ * @b: second node
+ *
+ * Return: void
+ */
+void swap(binary_tree_node_t *a, binary_tree_node_t *b)
+{
+	void *temp = a->data;
+	a->data = b->data;
+	b->data = temp;
+}
+
+/**
+ * heapify - swap the values until the tree is min-heap-ed
+ * @heap: heap of the tree
+ * @node: node to check from
+ *
+ * Return: void 
+ */
+void heapify(heap_t *heap, binary_tree_node_t *node)
+{
+	binary_tree_node_t *temp = node;
+
+	if (!heap || !node)
+		return;
+	while (temp->parent != NULL)
+	{
+		if (heap->data_cmp(temp->data, temp->parent->data) < 0)
+			swap(temp, temp->parent);
+		temp = temp->parent;
+	}
+}
+
+/**
+ * get_binary_depth - get the depth of the given binary heap
+ * @size: number of nodes in the tree
+ *
+ * Return : depth of the tree
+ */
+int get_binary_depth(long size)
+{
+	long num_nodes = 1, depth = 0;
+
+	while (size >= num_nodes)
+		num_nodes += (1 << (depth++ + 1));
+	return (depth);
+}
+
+/**
+ * try_to_insert - try to insert the new node in the binary heap
  * @heap: heap
  * @node: node to insert
  *
- * Return: 1 if well inserted, 0 otherwise
+ * Return: 1 if inserted, 0 otherwise
  */
-int try_to_insert(heap_t *heap, binary_tree_node_t *node)
+int try_to_insert(binary_tree_node_t *root, binary_tree_node_t *node,
+		long deep, long depth_target)
 {
-	int cmp;
-	binary_tree_node_t *temp = heap->root;
+	int left = 0, right = 0;
 
-	if (temp == NULL)
-		return (1);
-	while (temp)
+	if (deep == depth_target)
 	{
-		cmp = heap->data_cmp(node->data, temp->data);
-		
-		/* if node - temp > 0, if node is greater than temp */
-		if (cmp > 0 && temp->right)
-			temp = temp->right;
-		else if (cmp < 0 && temp->left)
-			temp = temp->left;
+		if (!root->left)
+			root->left = node;
+		else if (!root->right)
+			root->right = node;
 		else
 			return (0);
+		node->parent = root;
+		return (1);
 	}
 
-	if (cmp > 0)
-		temp->right = node;
-	else
-		temp->left = node;
-	node->parent = temp;
-	return (1);
+	left = try_to_insert(root->left, node, deep + 1, depth_target);
+	if (left)
+		return (1);
+	right = try_to_insert(root->right, node, deep + 1, depth_target);
+	if (right)
+		return (1);
+	return (0);
 }
 
 /**
@@ -71,11 +120,15 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 	node = binary_tree_node(NULL, data);
 	if (!node)
 		return (NULL);
-
+	
 	if (!heap->root)
-		return (heap->size++, heap->root = node, node);
+	{
+		heap->size++;
+		heap->root = node;
+		return (node);
+	}
 
-	is_inserted = try_to_insert(heap, node);
+	is_inserted = try_to_insert(heap->root, node, 0, get_binary_depth(heap->size) - 1);
 
 	if (!is_inserted)
 	{
@@ -83,8 +136,8 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 		return (NULL);
 	}
 
-	if (!node->parent)
-		heap->root = node;
+	heapify(heap, node);
+	
 	heap->size++;
 	return (node);
 }

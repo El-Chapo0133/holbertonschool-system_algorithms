@@ -42,7 +42,10 @@ void *heap_extract(heap_t *heap);
 void heap_delete(heap_t *heap, void (*free_data)(void *));
 
 /* utils */
-int try_to_insert(heap_t *heap, binary_tree_node_t *node);
+int try_to_insert(binary_tree_node_t *root, binary_tree_node_t *node, long deep, long depth_target);
+void swap(binary_tree_node_t *a, binary_tree_node_t *b);
+void heapify(heap_t *heap, binary_tree_node_t *node);
+int get_binary_depth(long size);
 
 
 #endif

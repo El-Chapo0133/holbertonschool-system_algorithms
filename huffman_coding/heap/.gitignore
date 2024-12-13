@@ -1,0 +1,4 @@
+*.o
+/binary_tree_print.c
+/main-2.c
+/out
