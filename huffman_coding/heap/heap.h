@@ -1,25 +1,6 @@
 #ifndef HEAP_H
 #define HEAP_H
 
-/*
- * ===========================================================================
- *
- *       Filename:  heap.h
- *
- *    Description: heap header file 
- *
- *        Version:  1.0
- *        Created:  13.12.2024 10:00:13
- *       Revision:  none
- *       Compiler:  gcc
- *
- *         Author:  Loris Lévêque, 9601@holbertonstudents.com
- *   Organization:  
- *
- * ===========================================================================
- */
-
-
 #include <stdio.h>
 #include <stdlib.h>
 
