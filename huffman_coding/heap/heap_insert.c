@@ -38,7 +38,7 @@ void swap(binary_tree_node_t *a, binary_tree_node_t *b)
  * @heap: heap of the tree
  * @node: node to check from
  *
- * Return: void 
+ * Return: void
  */
 void heapify(heap_t *heap, binary_tree_node_t *node)
 {
@@ -120,7 +120,7 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 	node = binary_tree_node(NULL, data);
 	if (!node)
 		return (NULL);
-	
+
 	if (!heap->root)
 	{
 		heap->size++;
@@ -128,7 +128,8 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 		return (node);
 	}
 
-	is_inserted = try_to_insert(heap->root, node, 0, get_binary_depth(heap->size) - 1);
+	is_inserted = try_to_insert(heap->root, node, 0,
+			get_binary_depth(heap->size) - 1);
 
 	if (!is_inserted)
 	{
@@ -137,7 +138,7 @@ binary_tree_node_t *heap_insert(heap_t *heap, void *data)
 	}
 
 	heapify(heap, node);
-	
+
 	heap->size++;
 	return (node);
 }
