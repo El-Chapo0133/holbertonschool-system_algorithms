@@ -3,7 +3,8 @@
  *
  *       Filename:  heap_extract.c
  *
- *    Description: Write a function that extracts the root value of a Min Binary Heap
+ *    Description: Write a function that extracts the root value
+ *    			of a Min Binary Heap
  *
  *        Version:  1.0
  *        Created:  20.12.2024 09:32:08
@@ -46,7 +47,7 @@ void heapify_from_root(heap_t *heap)
 		node->data = child->data;
 		child->data = temp;
 		node = child;
-	}	
+	}
 }
 
 /**
