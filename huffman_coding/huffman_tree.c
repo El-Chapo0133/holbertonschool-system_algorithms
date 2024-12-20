@@ -40,6 +40,7 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
 			return (NULL);
 	
 	root = (binary_tree_node_t *)heap->root->data;
-	heap_delete(heap, free_data);
+/* 	heap_delete(heap, free_data);
+ */
 	return (root);
 }
