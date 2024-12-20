@@ -31,7 +31,7 @@ void free_whole_binary_tree(binary_tree_node_t *root)
 		free_whole_binary_tree(root->left);
 	if (root->right)
 		free_whole_binary_tree(root->right);
-	free_data(root);
+	free(root);
 }
 
 /**
