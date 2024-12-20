@@ -20,7 +20,7 @@
 #include "huffman.h"
 
 /**
- * get_binary_depth - recursivly get the depth of the binary tree
+ * get_huffman_depth - recursivly get the depth of the binary tree
  * @root: binary tree root
  * @current_depth: current depth
  *
@@ -29,14 +29,14 @@
 size_t get_huffman_depth(binary_tree_node_t *root, size_t current_depth)
 {
 	int left_depth = -1, right_depth = -1;
-	
+
 	if (root->left)
 		left_depth = get_huffman_depth(root->left, current_depth + 1);
 	if (root->right)
 		right_depth = get_huffman_depth(root->right, current_depth + 1);
 	else
 		return (current_depth);
-	
+
 	if (left_depth > right_depth)
 		return (left_depth);
 	return (right_depth);
