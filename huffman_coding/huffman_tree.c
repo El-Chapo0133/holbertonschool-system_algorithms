@@ -30,7 +30,7 @@ void free_whole_binary_tree(binary_tree_node_t *root)
 		free_whole_binary_tree(root->left);
 	if (root->right)
 		free_whole_binary_tree(root->right);
-	fprintf(stderr, "Foo\n");
+	fprintf(stderr, "%d\n", (int *)root->data);
 	free_data(root);
 }
 
@@ -57,7 +57,6 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
 
 	root = (binary_tree_node_t *)heap->root;
 	free_whole_binary_tree(heap->root);
-	fprintf(stderr, "Foo\n");
 	free(heap);
 	return (root);
 }
