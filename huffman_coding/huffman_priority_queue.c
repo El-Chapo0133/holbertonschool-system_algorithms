@@ -31,8 +31,8 @@ void free_data(void *data)
 
 	if (!node)
 		return;
-	/*if (node->data)
-		free(node->data);*/
+	if (node->data)
+		free(node->data);
 	free(node);
 }
 
