@@ -17,7 +17,7 @@
  * ===========================================================================
  */
 
-#include "huffman.c"
+#include "huffman.h"
 
 /**
  * free_data - delete a set of structures
