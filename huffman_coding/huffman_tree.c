@@ -46,7 +46,7 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
 	binary_tree_node_t *root;
 	heap_t *heap;
 
-	printf("Foo\n");
+	fprintf(stderr, "Foo\n");
 	if (!data || !freq || size <= 0)
 		return (NULL);
 
