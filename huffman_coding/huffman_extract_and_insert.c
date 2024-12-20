@@ -20,8 +20,8 @@
 #include "huffman.h"
 
 /**
- * huffman_extract_and_insert - extracts the two min nodes of the priority queue
- * and insert a new one
+ * huffman_extract_and_insert - extracts the two min nodes of the
+ * priority queue and insert a new one
  * @priority_queue: pointer to the priority queue to extract from
  *
  * Return: 1 on success 0 on failure
