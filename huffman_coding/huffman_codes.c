@@ -100,14 +100,18 @@ int huffman_codes(char *data, size_t *freq, size_t size)
 {
 	binary_tree_node_t *root;
 	char *code;
-	size_t depth;
+	size_t depth, index;
 
 	root = huffman_tree(data, freq, size);
 	if (!root)
 		return (FAILURE);
 
 	depth = get_huffman_depth(root, 0);
-	code = calloc(sizeof(char), (depth));
+/* 	code = calloc(sizeof(char), (depth));
+ */
+	code = malloc(sizeof(char) + (depth + 1));
+	for (index = 0; index < depth; index++)
+		code[index] = '\0';
 
 	print_huffman_tree(root, code, 0);
 
