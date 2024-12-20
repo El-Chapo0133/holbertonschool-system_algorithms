@@ -38,7 +38,7 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
 	while (heap->root->left || heap->root->right)
 		if (!huffman_extract_and_insert(heap))
 			return (NULL);
-	
+
 	root = (binary_tree_node_t *)heap->root->data;
 	free(heap->root);
 	free(heap);
