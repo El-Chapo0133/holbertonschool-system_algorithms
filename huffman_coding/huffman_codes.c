@@ -26,14 +26,14 @@
  *
  * Return: depth of the binary tree
  */
-size_t get_binary_depth(binary_tree_node_t *root, size_t current_depth)
+size_t get_huffman_depth(binary_tree_node_t *root, size_t current_depth)
 {
 	int left_depth = -1, right_depth = -1;
 	
 	if (root->left)
-		left_depth = get_depth(root->left, current_depth + 1);
+		left_depth = get_huffman_depth(root->left, current_depth + 1);
 	if (root->right)
-		right_depth = get_depth(root->right, current_depth + 1);
+		right_depth = get_huffman_depth(root->right, current_depth + 1);
 	else
 		return (current_depth);
 	
@@ -79,7 +79,7 @@ int huffman_codes(char *data, size_t *freq, size_t size)
 	if (!root)
 		return (FAILURE);
 
-	depth = get_binary_depth(root, 0);
+	depth = get_huffman_depth(root, 0);
 	code = calloc(sizeof(char) + (depth + 1));
 
 	print_huffman_tree(root, code, 0);
