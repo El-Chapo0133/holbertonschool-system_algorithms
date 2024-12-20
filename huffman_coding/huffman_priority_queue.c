@@ -94,6 +94,7 @@ heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size)
 	if (!heap)
 		return (NULL);
 
+	/* for each characters, create or add the symbol */
 	for (iterator = 0; iterator < size; iterator++)
 	{
 		new_symbol = symbol_create(data[iterator], freq[iterator]);
