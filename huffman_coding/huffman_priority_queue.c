@@ -29,6 +29,7 @@ void free_data(void *data)
 {
 	binary_tree_node_t *node = (binary_tree_node_t *)data;
 
+	fprintf(stderr, "Foo\n");
 	if (!node)
 		return;
 	if (node->data)
