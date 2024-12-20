@@ -31,11 +31,8 @@ void free_data(void *data)
 
 	if (!node)
 		return;
-	if (node->data)
-	{
-		fprintf(stderr, "%d\n", *(int *)node->data);
-		free(node->data);
-	}
+	/*if (node->data)
+		free(node->data);*/
 	free(node);
 }
 
