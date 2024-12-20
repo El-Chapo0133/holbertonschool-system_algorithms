@@ -42,6 +42,14 @@ size_t get_huffman_depth(binary_tree_node_t *root, size_t current_depth)
 	return (right_depth);
 }
 
+/**
+ * print_huffman_tree - recursivly print the huffman tree
+ * @root: tree root
+ * @code: codes
+ * @depth: current depth
+ *
+ * Return: void
+ */
 void print_huffman_tree(binary_tree_node_t *root, char *code, size_t depth)
 {
 	symbol_t *symbol;
