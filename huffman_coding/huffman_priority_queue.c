@@ -82,7 +82,7 @@ heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size)
 	size_t iterator;
 	symbol_t *new_symbol = NULL;
 	heap_t *heap = NULL;
-	binary_tree_node_t *new_node, temp;
+	binary_tree_node_t *new_node, *temp;
 
 	if (!data || !freq)
 		return (NULL);
