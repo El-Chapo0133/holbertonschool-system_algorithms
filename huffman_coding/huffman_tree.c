@@ -55,6 +55,7 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
 			return (NULL);
 
 	root = (binary_tree_node_t *)heap->root;
+	printf("Foo\n");
 	free_whole_binary_tree(heap->root);
 	free(heap);
 	return (root);
