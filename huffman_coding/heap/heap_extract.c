@@ -4,7 +4,7 @@
  *       Filename:  heap_extract.c
  *
  *    Description: Write a function that extracts the root value
- *    			of a Min Binary Heap
+ *			of a Min Binary Heap
  *
  *        Version:  1.0
  *        Created:  20.12.2024 09:32:08
