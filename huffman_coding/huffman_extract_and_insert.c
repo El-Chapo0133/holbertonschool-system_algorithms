@@ -42,8 +42,8 @@ int huffman_extract_and_insert(heap_t *priority_queue)
 	symbol1 = (symbol_t *)node1->data;
 	symbol2 = (symbol_t *)node2->data;
 
-	symbol = symbol_create(-1, symbol1->freq + symbol2->freq);
-	if (!symbol)
+	new_symbol = symbol_create(-1, symbol1->freq + symbol2->freq);
+	if (!new_symbol)
 		return (FAILURE);
 
 	new_node = binary_tree_node(NULL, new_symbol);
