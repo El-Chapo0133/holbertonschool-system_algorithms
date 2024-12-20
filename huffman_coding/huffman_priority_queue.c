@@ -90,7 +90,7 @@ heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size)
 	heap = heap_create(huffman_data_comparison);
 	if (!heap)
 		return (NULL);
-	
+
 	for (iterator = 0; iterator < size; iterator++)
 	{
 		new_symbol = symbol_create(data[iterator], freq[iterator]);
