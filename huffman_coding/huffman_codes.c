@@ -64,8 +64,11 @@ void print_huffman_tree(binary_tree_node_t *root, char *code, size_t depth)
 		code[depth] = '1';
 		print_huffman_tree(root->right, code, depth + 1);
 	}
-	symbol = (symbol_t *)root->data;
-	fprintf(stdout, "%c: %s\n", symbol->data, code);
+	else
+	{
+		symbol = (symbol_t *)root->data;
+		fprintf(stdout, "%c: %s\n", symbol->data, code);
+	}
 }
 
 /**
