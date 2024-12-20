@@ -54,6 +54,6 @@ void heap_delete(heap_t *heap, void (*free_data)(void *))
 		return;
 	}
 
-	recusrivly_delete_all_nodes(heap->root, free_data);
+	recursivly_delete_all_nodes(heap->root, free_data);
 	free(heap);	
 }

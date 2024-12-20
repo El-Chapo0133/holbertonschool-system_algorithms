@@ -46,6 +46,6 @@ int try_to_insert(binary_tree_node_t *root, binary_tree_node_t *node, long deep,
 void swap(binary_tree_node_t *a, binary_tree_node_t *b);
 void heapify(heap_t *heap, binary_tree_node_t *node);
 int get_binary_depth(long size);
-
+void recursivly_delete_all_nodes(binary_tree_node_t *node, void (*free_data)(void *));
 
 #endif
