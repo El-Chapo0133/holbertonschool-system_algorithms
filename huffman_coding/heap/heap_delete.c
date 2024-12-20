@@ -28,10 +28,10 @@
 void recursivly_delete_all_nodes(binary_tree_node_t *node,
 		void (*free_data)(void *))
 {
-	if (!node)
-		return;
-	recursivly_delete_all_nodes(node->left, free_data);
-	recursivly_delete_all_nodes(node->right, free_data);
+	if (node->left)
+		recursivly_delete_all_nodes(node->left, free_data);
+	if (node->right)
+		recursivly_delete_all_nodes(node->right, free_data);
 	if (free_data)
 		free_data(node->data);
 	free(node);
