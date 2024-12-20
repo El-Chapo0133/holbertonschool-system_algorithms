@@ -70,16 +70,19 @@ void print_huffman_tree(binary_tree_node_t *root, char *code, size_t depth)
 {
 	symbol_t *symbol;
 
+	/* when left exists, print a '0' */
 	if (root->left)
 	{
 		code[depth] = '0';
 		print_huffman_tree(root->left, code, depth + 1);
 	}
+	/* when right exists print a '1' */
 	if (root->right)
 	{
 		code[depth] = '1';
 		print_huffman_tree(root->right, code, depth + 1);
 	}
+	/* then print the symbol and the code */
 	else
 	{
 		symbol = (symbol_t *)root->data;
@@ -107,11 +110,7 @@ int huffman_codes(char *data, size_t *freq, size_t size)
 		return (FAILURE);
 
 	depth = get_huffman_depth(root, 0);
-/* 	code = calloc(sizeof(char), (depth));
- */
-	code = malloc(sizeof(char) + (depth + 1));
-	for (index = 0; index < depth; index++)
-		code[index] = '\0';
+	code = calloc(sizeof(char), depth);
 
 	print_huffman_tree(root, code, 0);
 
