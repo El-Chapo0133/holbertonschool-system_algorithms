@@ -20,6 +20,21 @@
 #include "huffman.h"
 
 /**
+ * free_whole_binary_tree - recursivly free the whole tree
+ * @root: root node
+ *
+ * Return: void
+ */
+void free_whole_binary_tree(binary_tree_node_t *root)
+{
+	if (root->left)
+		free_whole_binary_tree(root->left);
+	if (root->right)
+		free_whole_binary_tree(root->right);
+	free_data(root);
+}
+
+/**
  * get_huffman_depth - recursivly get the depth of the binary tree
  * @root: binary tree root
  * @current_depth: current depth

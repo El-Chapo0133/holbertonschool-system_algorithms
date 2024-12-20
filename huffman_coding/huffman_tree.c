@@ -19,21 +19,6 @@
 #include "huffman.h"
 
 /**
- * free_whole_binary_tree - recursivly free the whole tree
- * @root: root node
- *
- * Return: void
- */
-void free_whole_binary_tree(binary_tree_node_t *root)
-{
-	if (root->left)
-		free_whole_binary_tree(root->left);
-	if (root->right)
-		free_whole_binary_tree(root->right);
-	free_data(root);
-}
-
-/**
  * huffman_tree - builds the Huffman tree
  * @data: array of characters
  * @freq: array of freqs
@@ -50,6 +35,8 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
 		return (NULL);
 
 	heap = huffman_priority_queue(data, freq, size);
+	if (!heap)
+		return (NULL);
 	while (heap->root->left || heap->root->right)
 		if (!huffman_extract_and_insert(heap))
 		{
