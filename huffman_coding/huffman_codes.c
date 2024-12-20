@@ -31,6 +31,7 @@ void free_whole_binary_tree(binary_tree_node_t *root)
 		free_whole_binary_tree(root->left);
 	if (root->right)
 		free_whole_binary_tree(root->right);
+	free(root->data);
 	free(root);
 }
 
@@ -106,7 +107,7 @@ int huffman_codes(char *data, size_t *freq, size_t size)
 		return (FAILURE);
 
 	depth = get_huffman_depth(root, 0);
-	code = calloc(sizeof(char), (depth + 1));
+	code = calloc(sizeof(char), (depth));
 
 	print_huffman_tree(root, code, 0);
 
