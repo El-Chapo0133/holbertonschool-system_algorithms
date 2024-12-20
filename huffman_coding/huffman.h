@@ -30,5 +30,6 @@ int huffman_codes(char *data, size_t *freq, size_t size);
 /*  UTILS  */
 void free_data(void *data);
 int huffman_data_comparison(void *data1, void *data2);
+void free_whole_binary_tree(binary_tree_node_t *root);
 
 #endif
