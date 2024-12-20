@@ -16,7 +16,7 @@
  * ===========================================================================
  */
 
-#include "heap.h"
+#include "huffman.h"
 
 /**
  * symbol_create - create a symbol_t
