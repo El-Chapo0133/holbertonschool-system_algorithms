@@ -103,7 +103,7 @@ int huffman_codes(char *data, size_t *freq, size_t size)
 {
 	binary_tree_node_t *root;
 	char *code;
-	size_t depth, index;
+	size_t depth;
 
 	root = huffman_tree(data, freq, size);
 	if (!root)
