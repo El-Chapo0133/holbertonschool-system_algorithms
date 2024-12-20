@@ -33,6 +33,7 @@ void free_data(void *data)
 		return;
 	if (node->data)
 	{
+		fprintf(stderr, "Foo\n");
 		fprintf(stderr, "%ls\n", (int *)node->data);
 		free(node->data);
 	}
