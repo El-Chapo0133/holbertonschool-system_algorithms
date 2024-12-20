@@ -19,23 +19,6 @@
 #include "huffman.h"
 
 /**
- * free_data - delete a binary_tree_node_t
- * @data: void ptr to a binary_tree_node_t to delete
- *
- * Return: void
- */
-void free_data(void *data)
-{
-	binary_tree_node_t *node = (binary_tree_node_t *)data;
-
-	if (!node)
-		return;
-	if (node->data)
-		free(node->data);
-	free(node);
-}
-
-/**
  * huffman_tree - builds the Huffman tree
  * @data: array of characters
  * @freq: array of freqs
