@@ -20,16 +20,15 @@
 #include "huffman.h"
 
 /**
- * free_data - delete a set of structures
- * @data: data to delete
+ * free_data - delete a binary_tree_node_t
+ * @data: void ptr to a binary_tree_node_t to delete
  *
  * Return: void
  */
 void free_data(void *data)
 {
-	binary_tree_node_t *node = NULL;
+	binary_tree_node_t *node = (binary_tree_node_t *)data;
 
-	node = (binary_tree_node_t *) data;
 	if (!node)
 		return;
 	if (node->data)
@@ -52,16 +51,20 @@ int huffman_data_comparison(void *data1, void *data2)
 	data_node1 = (binary_tree_node_t *) data1;
 	data_node2 = (binary_tree_node_t *) data2;
 
+	/* when data1 doesn't exists return -1 */
 	if ((!data_node1 && data_node2) ||
 		(data_node1 && !data_node1->data && data_node2 && data_node2->data))
 		return (-1);
+	/* when data2 doesn't exists return 1 */
 	else if ((data_node1 && !data_node2) ||
 		(data_node1 && data_node1->data && data_node2 && !data_node2->data))
 		return (1);
+	/* when none exists return 0 */
 	else if ((!data_node1 && !data_node2) ||
 		(data_node1 && !data_node1->data && data_node2 && !data_node2->data))
 		return (0);
 
+	/* else return the sub */
 	freq_1 = ((symbol_t *)data_node1->data)->freq;
 	freq_2 = ((symbol_t *)data_node2->data)->freq;
 
