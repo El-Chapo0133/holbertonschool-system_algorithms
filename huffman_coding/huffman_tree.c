@@ -31,7 +31,7 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
 	binary_tree_node_t *root;
 	heap_t *heap;
 
-	if (!data || !freq)
+	if (!data || !freq || size <= 0)
 		return (NULL);
 
 	heap = huffman_priority_queue(data, freq, size);
