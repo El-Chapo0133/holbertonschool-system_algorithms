@@ -34,7 +34,7 @@ void free_data(void *data)
 	if (node->data)
 	{
 		free(node->data);
-		fprintf(stderr, "%ls\n", (int *)root->data);
+		fprintf(stderr, "%ls\n", (int *)node->data);
 	}
 	free(node);
 }
