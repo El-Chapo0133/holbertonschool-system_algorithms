@@ -111,7 +111,7 @@ heap_t *huffman_priority_queue(char *data, size_t *freq, size_t size)
 		temp = heap_insert(heap, (void *)new_node);
 		if (!temp)
 		{
-			free_data(node);
+			free_data(new_node);
 			free(new_symbol);
 			heap_delete(heap, free_data);
 			return (NULL);
