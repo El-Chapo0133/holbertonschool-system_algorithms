@@ -52,12 +52,12 @@ binary_tree_node_t *huffman_tree(char *data, size_t *freq, size_t size)
 	heap = huffman_priority_queue(data, freq, size);
 	while (heap->root->left || heap->root->right)
 		if (!huffman_extract_and_insert(heap))
+		{
+			heap_delete(heap, NULL);
 			return (NULL);
+		}
 
 	root = (binary_tree_node_t *)heap->root->data;
-/* 	free_whole_binary_tree(heap->root);
- */
-	free(heap->root);
-	free(heap);
+	heap_delete(heap, NULL);
 	return (root);
 }
