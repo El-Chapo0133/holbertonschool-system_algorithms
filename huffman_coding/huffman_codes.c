@@ -88,7 +88,7 @@ int huffman_codes(char *data, size_t *freq, size_t size)
 		return (FAILURE);
 
 	depth = get_huffman_depth(root, 0);
-	code = calloc(1, sizeof(char) + (depth + 1));
+	code = calloc(sizeof(char), (depth + 1));
 
 	print_huffman_tree(root, code, 0);
 
