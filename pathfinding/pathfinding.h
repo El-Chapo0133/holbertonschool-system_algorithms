@@ -10,8 +10,14 @@
 #include <string.h>
 
 /**
- * get euclidian distance between two points
+ * euclidean_dist - get euclidian distance between two points
  * https://en.wikipedia.org/wiki/Euclidean_distance
+ * @x1: x1
+ * @y1: y1
+ * @x2: x2
+ * @y2: y2
+ *
+ * Return: euclidean result
  */
 #define euclidean_dist(x1, y1, x2, y2) sqrt(pow(x2 - x1, 2) + pow(y2 - y1, 2))
 
