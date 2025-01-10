@@ -165,7 +165,7 @@ queue_t *backtracking_array(char **map, int rows, int cols,
 				start->x, start->y) == 1)
 	{
 		queue_delete(queue);
-		return (NULL);
+		queue = NULL;
 	}
 
 	free_visited(visited, rows);
