@@ -4,7 +4,7 @@
  *       Filename:  0-backtracking_array.c
  *
  *    Description: Write a function that searches for the first path from a
- *	starting point to a target point within a two-dimensional array 
+ *	starting point to a target point within a two-dimensional array
  *
  *        Version:  1.0
  *        Created:  10.01.2025 09:45:06
@@ -12,7 +12,7 @@
  *       Compiler:  gcc
  *
  *         Author:  Loris Levêque (9601), loris@leveque.website
- *   Organization:  
+ *   Organization:  Holberton
  *
  * ==========================================================================
  */
@@ -23,7 +23,7 @@
  * free_visited - free the viststed 2D array
  * @visited: array to free
  * @size: array size
- * 
+ *
  * Return: void
  */
 void free_visited(int **visited, int size)
@@ -87,10 +87,12 @@ int find_path(char **map, int rows, int cols,
 	visited[current_y][current_x] = 1;
 	for (index = 0; index < SIZE; index++)
 	{
-		if (find_path(map,rows,cols,queue,visited,directions,target,
+		if (find_path(map, rows, cols, queue,
+				visited, directions, target,
 				current_x + directions[index].x,
 				current_y + directions[index].y) == 0)
-			return (push_point_to_queue(queue,current_x,current_y));
+			return (push_point_to_queue(queue,
+						current_x, current_y));
 	}
 	return (1);
 }
@@ -110,18 +112,18 @@ int initialize_all(queue_t **queue, point_t *directions, int ***visited,
 {
 	int index;
 
-	// queue init
+	/* queue init */
 	*queue = queue_create();
 	if (!queue)
 		return (1);
 
-	// direction init
+	/* direction init */
 	directions[EAST].x = 1, directions[EAST].y = 0;
 	directions[SOUTH].x = 0, directions[SOUTH].y = 1;
 	directions[WEST].x = -1, directions[WEST].y = 0;
 	directions[NORTH].x = 0, directions[NORTH].y = -1;
-	
-	// visited array init
+
+	/* visited array init */
 	*visited = malloc(rows * sizeof(**visited));
 	if (*visited == NULL)
 		return (1);
