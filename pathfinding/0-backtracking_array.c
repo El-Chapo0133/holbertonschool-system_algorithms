@@ -100,7 +100,7 @@ int find_path(char **map, int rows, int cols,
 /**
  * initialize_all - init queue, direction and visited variables
  * @queue: ptr to queue to init
- * @direction: ptr to point_t to init
+ * @directions: ptr to point_t to init
  * @visited: ptr to visited to init
  * @rows: rows number of the map
  * @cold: colds number of the map
