@@ -103,7 +103,7 @@ int find_path(char **map, int rows, int cols,
  * @directions: ptr to point_t to init
  * @visited: ptr to visited to init
  * @rows: rows number of the map
- * @cold: colds number of the map
+ * @cols: colds number of the map
  *
  * Return: 0 on success 1 on error
  */
