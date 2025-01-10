@@ -76,15 +76,15 @@ int find_path(char **map, int rows, int cols,
 
 	if (current_x < 0 || current_x >= cols ||
 			current_y < 0 || current_y >= rows ||
-			map[current_x][current_y] == '1' ||
-			visited[current_x][current_y] == 1)
+			map[current_y][current_x] == '1' ||
+			visited[current_y][current_x] == 1)
 		return (1);
 
 	fprintf(stdout, "Checking coordinates [%i, %i]\n",
 			current_x, current_y);
 	if (current_x == target->x && current_y == target->y)
 		return (push_point_to_queue(queue, current_x, current_y));
-	visited[current_x][current_y] = 1;
+	visited[current_y][current_x] = 1;
 	for (index = 0; index < SIZE; index++)
 	{
 		if (find_path(map,rows,cols,queue,visited,directions,target,
