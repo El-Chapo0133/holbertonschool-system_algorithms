@@ -53,7 +53,7 @@ void discover_dijkstra(vertex_t const *current,
 		if (edge->weight == lowest)
 		{
 			fprintf(stdout, "Checking %s, distance from %s is %i\n",
-					edge->dest, current->content,
+					edge->dest->content, current->content,
 					edge->weight + weight);
 			edge->weight += weight;
 			locker[edge->dest->index] = 1;
