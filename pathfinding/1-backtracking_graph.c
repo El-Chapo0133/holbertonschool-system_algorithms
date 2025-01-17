@@ -45,7 +45,8 @@ queue_node_t *dfs_graph(queue_t *queue, int *visited, const vertex_t *current,
 	return (NULL);
 }
 
-queue_t *backtracking_graph(graph_t *graph, vertex_t const *start, vertex_t const *target)
+queue_t *backtracking_graph(graph_t *graph, vertex_t const *start,
+		vertex_t const *target)
 {
 	queue_t *queue;
 	int *visited;
@@ -60,12 +61,12 @@ queue_t *backtracking_graph(graph_t *graph, vertex_t const *start, vertex_t cons
 	if (!visited)
 		return (NULL);
 
-	/* setbuf(stdout, NULL);
+	setbuf(stdout, NULL);
 	if (!dfs(queue, visited, start, target->content))
 	{
 		queue_delete(queue);
 		queue = NULL;
-	}*/
+	}
 	free(visited);
 	return (queue);
 }
