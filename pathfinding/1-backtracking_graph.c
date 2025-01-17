@@ -62,7 +62,7 @@ queue_t *backtracking_graph(graph_t *graph, vertex_t const *start,
 		return (NULL);
 
 	setbuf(stdout, NULL);
-	if (!dfs(queue, visited, start, target->content))
+	if (!dfs_graph(queue, visited, start, target->content))
 	{
 		queue_delete(queue);
 		queue = NULL;
