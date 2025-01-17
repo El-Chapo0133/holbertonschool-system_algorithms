@@ -25,6 +25,21 @@
 
 
 /**
+ * struct dijkstra_queue_s - dijkstra queue
+ * @dq_source: ptr to dijkstra source queue node
+ * @dest: ptr to dest vertex node
+ * @weigth: weight of the cell
+ * @next: ptr to next vertex node
+ */
+typedef struct dijkstra_queue_s
+{
+	struct dijkstra_queue_s *dq_source;
+	vertex_t *dest;
+	int weight;
+	struct dijkstra_queue_s *next;
+} dijkstra_queue_t;
+
+/**
  * enum cardinal_dir - cardinal directions
  * @EAST: east
  * @SOUTH: south
