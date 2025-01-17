@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -Wall -Werror -Wextra -pedantic -std=gnu90 -g
+CFLAGS = -Wall -Werror -Wextra -pedantic -I.
 
 SRC0 = 0-backtracking_array.c 0-main.c
 OBJ0 = $(SRC0:.c=.o)
@@ -13,7 +13,7 @@ SRC1 = 2-dijkstra_graph.c 2-main.c
 OBJ2 = $(SRC2:.c=.o)
 NAME2 = dijkstra_graph
 
-LIBS = -lgraphs -lqueues
+LIBS = -L. -lgraphs -lqueues -lm
 
 .PHONY: all clean oclean
 
@@ -34,11 +34,11 @@ oclean:
 
 
 backtracking: $(OBJ0)
-	$(CC) $(CFLAGS) $(OBJ0) $(LIBS) -o $(NAME0)
+	$(CC) -o $(NAME0) $(CFLAGS) $(obj0) $(LIBS)
 
 graph: $(OBJ1)
-	$(CC) $(CFLAGS) $(OBJ1) $(LIBS) -o $(NAME1)
+	$(CC) -o $(NAME1) $(CFLAGS) $(OBJ1) $(LIBS)
 
 dijkstra: $(OBJ2)
-	$(CC) $(CFLAGS) $(OBJ2) $(LIBS) -o $(NAME2)
+	$(CC) -o $(NAME2) $(CFLAGS) $(OBJ2) $(LIBS)
 

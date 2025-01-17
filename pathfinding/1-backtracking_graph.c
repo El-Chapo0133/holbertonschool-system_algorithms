@@ -20,7 +20,7 @@
 #include "pathfinding.h"
 
 
-queue_note_t *dfs_graph(queue_t *queue, int *visited, const vertex_t *current,
+queue_node_t *dfs_graph(queue_t *queue, int *visited, const vertex_t *current,
 		char *target)
 {
 	edge_t *edge;
