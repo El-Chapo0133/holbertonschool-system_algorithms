@@ -3,4 +3,5 @@
 /test
 /test.c
 /backtracking_array
-/backtracking_queue
+/backtracking_graph
+/dijkstra_graph

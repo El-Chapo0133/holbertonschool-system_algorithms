@@ -12,10 +12,10 @@
 /**
  * euclidean_dist - get euclidian distance between two points
  * https://en.wikipedia.org/wiki/Euclidean_distance
- * @x1: x1
- * @y1: y1
- * @x2: x2
- * @y2: y2
+ * @x1: first point x
+ * @y1: first point y
+ * @x2: second point x
+ * @y2: second point y
  *
  * Return: euclidean result
  */
