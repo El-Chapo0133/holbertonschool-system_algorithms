@@ -29,7 +29,7 @@ queue_node_t *dfs_graph(queue_t *queue, int *visited, const vertex_t *current,
 		return (NULL);
 
 	fprintf(stdout, "Checking %s\n", current->content);
-	if (!strcmp(current->content, target->content))
+	if (!strcmp(current->content, target))
 		return (queue_push_front(queue, strdup(current->content)));
 
 	visited[current->index] = 1;
@@ -37,7 +37,7 @@ queue_node_t *dfs_graph(queue_t *queue, int *visited, const vertex_t *current,
 	edge = current->edges;
 	while (edge)
 	{
-		if (dfs(queue, visited, edge->dest, target))
+		if (dfs_graph(queue, visited, edge->dest, target))
 			return (queue_push_front(queue, strdup(current->content)));
 		edge = edge->next;
 	}
