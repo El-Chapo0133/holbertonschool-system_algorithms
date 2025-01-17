@@ -9,6 +9,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define INT_MAX 2147483647
+
 /**
  * euclidean_dist - get euclidian distance between two points
  * https://en.wikipedia.org/wiki/Euclidean_distance

@@ -9,7 +9,7 @@ SRC1 = 1-backtracking_graph.c 1-main.c
 OBJ1 = $(SRC1:.c=.o)
 NAME1 = backtracking_graph
 
-SRC1 = 2-dijkstra_graph.c 2-main.c
+SRC2 = 2-dijkstra_graph.c 2-main.c
 OBJ2 = $(SRC2:.c=.o)
 NAME2 = dijkstra_graph
 
